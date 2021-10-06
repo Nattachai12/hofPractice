@@ -98,7 +98,8 @@
           it('should return an array', function() {
             expect(Array.isArray(startsWith(testFruits, 'd'))).to.equal(true);
           });
-          it('should return an array containing strings starting with the given letter', function() {
+          it('should return an array containing strings starting with the given letter',
+          function() {
             var startsWithP = startsWith(testFruits, 'p');
             var startsWithA = startsWith(testFruits, 's');
             var startsWithG = startsWith(testFruits, 'g');
@@ -213,7 +214,7 @@
           });
           it('should return an array containing movies released in the 90s', function() {
             var data = ninetiesKid(testMovies);
-            expect(data)
+            expect(data);
           });
         });
 
