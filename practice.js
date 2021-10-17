@@ -131,6 +131,11 @@ that were release between 1990 -2000
 
 strategy
 1. use reduce
+How does reduce works?
+  The accumulator (unique movie) starts with empty array
+  if the array doesn't contain this movie title and if the movie isn't released
+    in the 90s then push that movie into the array
+  return uniqueMovie signify end of that iteration
 */
 var ninetiesKid = function(movies) {
   return _.reduce(movies, function (uniqueMovie, movie) {
@@ -152,6 +157,15 @@ false if vice versa
 
 strategy:
 1. use reduce
+How reduce works?
+1. The accumulator (shortestTime) starts with false.
+1st iteration: will skip the if statement because it starts with false
+  then it will return comparison between current movie runtime with the timeLimit
+if it's true
+  2nd iteration will go into if statement and will return true from there on
+if it's false
+  will repeat what 1st iteration did and keep repeat until either it found a shorter
+  run time or there is no shorter run time.
 */
 var movieNight = function(movies, timeLimit) {
   return _.reduce(movies, function(shortestTime, movie) {
@@ -181,19 +195,54 @@ var movieNight = function(movies, timeLimit) {
     }
   ];
 */
+/*
+input: a product (obj with properties) array and a coupon in decimals (percentage) (2 decimals)
+output: array of items with a new property salePrice
+strategy:
+  round coupon decimals to 2 places
+  use _.map to iterate over array
+  add new property
+*/
 var applyCoupon = function(grocery, coupon) {
-
+  var discount = 1 - coupon.toFixed(2);
+  return _.map(grocery, function (item) {
+    item['salePrice'] = Math.floor(item.price * discount);
+    return item;
+  });
 };
 
 // given an array of strings, use _.map to return a new array containing all
 // strings converted to uppercase letters.
+/*
+input:  an array of fruits (string)
+output: a new array with all cap fruits string
+strategy
+_.map to upper
+*/
 var upperCaseFruits = function(fruits) {
-
+  return _.map(fruits, function (fruit) {
+    return fruit.toUpperCase();
+  });
 };
 
 // given an array of dessert objects, return a new array of objects
 // that have a new "glutenFree" property, with a boolean value.
 // TIP: Items that contain flour are not gluten-free.
-var glutenFree = function(desserts) {
+/*
+input: an array of object desserts.
+output: a new array of object desserts with added property (gluenFree)
+any item with flour is not gluten free
 
+strategy
+1. use _.map to loop for outer array
+2. if item.ingredients.includes('flour') return item[glutenfree] = false
+3. otherwise true
+*/
+var glutenFree = function(desserts) {
+  return _.map(desserts, function (item) {
+    if (item.ingredients.includes('flour')) {
+      item.glutenFree = false;
+    } else { item.glutenFree = true; }
+    return item;
+  });
 };
